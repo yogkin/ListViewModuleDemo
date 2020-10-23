@@ -8,7 +8,7 @@
 ## 使用步骤
 1. 添加依赖 
 ```kotlin
-implementation 'com.github.yogkin:ListViewModuleDemo:Tag'
+implementation 'com.github.yogkin:ListViewModuleDemo:1.0.0'
 ```
 2. 需要下拉刷新的`view`实现`IRefreshView<T> T`为`adapter` 实体的`Bean`，实现里面关键的3个方法
 ```kotlin
