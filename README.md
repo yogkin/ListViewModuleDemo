@@ -31,11 +31,12 @@ override fun onCreate(savedInstanceState: Bundle?) {
 }
 ```
  ### 效果如下：
- 
+ ![avatar](https://github.com/yogkin/ListViewModuleDemo/blob/master/gif/autoLoadNormal.gif)
  ## 要酷炫一点的? 你可以这样做
  ```kotlin
- 
+ refreshLayout.setAdapterAndLoad(this, DeliveryHeader(this))
  ```
- 
+ ## 效果如下：
+![avatar](https://github.com/yogkin/ListViewModuleDemo/blob/master/gif/autoLoadHeihei.gif)
  
  ### 这样你就可以开心的玩耍啦~
