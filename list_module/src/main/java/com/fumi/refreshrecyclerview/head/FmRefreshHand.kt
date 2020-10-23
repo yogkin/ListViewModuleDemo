@@ -1,4 +1,4 @@
-package com.fumi.refreshrecyclerview
+package com.fumi.refreshrecyclerview.head
 
 import android.content.Context
 import android.util.AttributeSet
@@ -17,7 +17,7 @@ import com.scwang.smart.refresh.layout.constant.SpinnerStyle
 import com.scwang.smart.refresh.layout.util.SmartUtil
 
 
-class RefreshView @JvmOverloads constructor(
+class RefreshHead @JvmOverloads constructor(
     context: Context?,
     attrs: AttributeSet? = null
 ) :
@@ -108,7 +108,7 @@ class RefreshView @JvmOverloads constructor(
                         mArrowView.visibility = View.GONE //隐藏箭头
                     }
                     RefreshState.ReleaseToRefresh -> {
-                        mHeaderText.text = "释放刷新"
+                        mHeaderText.text = "刷新完成"
                         mArrowView.animate()
                             .also { it.duration = 100 }
                             .rotation(-180f) //显示箭头改为朝上

@@ -5,8 +5,10 @@ import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.widget.FrameLayout
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fumi.refreshrecyclerview.bean.PageBean
+import com.fumi.refreshrecyclerview.head.RefreshHead
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import com.scwang.smart.refresh.layout.api.RefreshFooter
 import com.scwang.smart.refresh.layout.api.RefreshHeader
@@ -27,11 +29,10 @@ class RefreshLayout : SmartRefreshLayout {
 
     private lateinit var iRefreshView: IRefreshView<*>
 
-
-    fun <T> setAdapter(refreshView: IRefreshView<T>, refreshHeadView: RefreshHeader = RefreshView(context), loadMoreView: RefreshFooter = RefreshView(context)) {
+    private fun <T> setData(refreshView: IRefreshView<T>, layoutManager: RecyclerView.LayoutManager, refreshHeadView: RefreshHeader, loadMoreView: RefreshFooter) {
         this.iRefreshView = refreshView
         recyclerView.adapter = iRefreshView.getAdapter()
-        recyclerView.layoutManager = iRefreshView.getAdapterLayoutManager()
+        recyclerView.layoutManager = layoutManager
 
         setRefreshHeader(refreshHeadView)
         setRefreshFooter(loadMoreView)
@@ -46,8 +47,17 @@ class RefreshLayout : SmartRefreshLayout {
         }
 
         setEnableLoadMore(refreshView.isPaging())
+    }
+
+    fun <T> setAdapterAndLoad(refreshView: IRefreshView<T>, refreshHeadView: RefreshHeader = RefreshHead(context), loadMoreView: RefreshFooter = RefreshHead(context), layoutManager: LinearLayoutManager = LinearLayoutManager(context)) {
+        setData(refreshView, layoutManager, refreshHeadView, loadMoreView)
 
         autoRefresh()
+    }
+
+
+    fun <T> setAdapter(refreshView: IRefreshView<T>, refreshHeadView: RefreshHeader = RefreshHead(context), loadMoreView: RefreshFooter = RefreshHead(context), layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(context)) {
+        setData(refreshView, layoutManager, refreshHeadView, loadMoreView)
     }
 
 
@@ -74,6 +84,7 @@ class RefreshLayout : SmartRefreshLayout {
     }
 
 
+    @Suppress("UNCHECKED_CAST")
     private fun <T> addData(addData: MutableList<T>) {
         val data = iRefreshView.getAdapterList() as MutableList<T>
         data.addAll(addData)
@@ -86,6 +97,7 @@ class RefreshLayout : SmartRefreshLayout {
         }
     }
 
+    @Suppress("UNCHECKED_CAST")
     private fun <T> setData(adapterData: MutableList<T>) {
         val data = iRefreshView.getAdapterList() as MutableList<T>
         data.clear()

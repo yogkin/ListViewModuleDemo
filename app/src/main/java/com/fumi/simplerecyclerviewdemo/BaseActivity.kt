@@ -32,13 +32,8 @@ abstract class BaseActivity<T> : AppCompatActivity(), INetView, IRefreshView<T> 
 
 
     override fun getAdapter(): RecyclerView.Adapter<*> = adapter
-    override fun getAdapterLayoutManager() = LinearLayoutManager(this)
     override fun getAdapterList() = adapter.mData
-    override fun getRefreshData(
-        isRefresh: Boolean,
-        pageParam: PageParam,
-        refreshLayout: RefreshLayout
-    ) {
+    override fun getRefreshData(isRefresh: Boolean, pageParam: PageParam, refreshLayout: RefreshLayout) {
         getPageFlowAble(pageParam).executeNoHandle {
             refreshLayout.putData(isRefresh, it)
         }

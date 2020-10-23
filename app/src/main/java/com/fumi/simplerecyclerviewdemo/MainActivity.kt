@@ -5,6 +5,7 @@ import android.view.View
 import com.fumi.net_module.asyncAndHandle
 import com.fumi.refreshrecyclerview.PageParam
 import com.fumi.refreshrecyclerview.bean.PageBean
+import com.fumi.refreshrecyclerview.head.DeliveryHeader
 import com.fumi.simplerecyclerviewdemo.adapter.FmAdapter
 import com.fumi.simplerecyclerviewdemo.bean.Data
 import com.fumi.simplerecyclerviewdemo.bean.ListResponse
@@ -29,7 +30,7 @@ class MainActivity : BaseActivity<Data>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        refreshLayout.setAdapter(this)
+        refreshLayout.setAdapterAndLoad(this, DeliveryHeader(this))
     }
 
 
