@@ -1,18 +1,23 @@
 package com.fumi.simplerecyclerviewdemo
 
+import android.Manifest
+import android.content.Context
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.telephony.TelephonyManager
 import android.view.View
+import androidx.core.app.ActivityCompat
 import com.fumi.net_module.asyncAndHandle
 import com.fumi.refreshrecyclerview.PageParam
 import com.fumi.refreshrecyclerview.bean.PageBean
 import com.fumi.refreshrecyclerview.head.DeliveryHeader
 import com.fumi.simplerecyclerviewdemo.adapter.FmAdapter
 import com.fumi.simplerecyclerviewdemo.bean.Data
-import com.fumi.simplerecyclerviewdemo.bean.ListResponse
-import com.fumi.simplerecyclerviewdemo.bean.ResultPageBean
+import com.fumi.simplerecyclerviewdemo.bean.Data2
 import io.reactivex.Flowable
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.item_simple.view.*
+
 
 class MainActivity : BaseActivity<Data>() {
     override val layoutIds = R.layout.activity_main
@@ -21,7 +26,6 @@ class MainActivity : BaseActivity<Data>() {
         override fun View.onBindData(holder: Holder, data: Data, position: Int) {
             textView.text = data.title
         }
-
     }
 
     override fun getPageFlowAble(pageParam: PageParam): Flowable<out PageBean> {
